@@ -39,6 +39,54 @@
                 document.getElementById('danzas').innerHTML='';
             }
         }
+        function checkAppStatus() {
+    const currentDate = new Date();
+    const endDate = new Date('2025-04-01');
+
+    if (currentDate < endDate) {
+        // Mostrar ventana modal
+        const modalContent = `
+            <div style="padding: 20px; text-align: center;">
+                <h2>Atención</h2>
+                <p>Esta aplicación dejará de funcionar a partir del 01-Abril-2025.</p>
+                <p>Visita la <a href="https://ilovebiodanza.top" target="_blank">Nueva versión de Yo Amo Biodanza</a></p>
+                <button onclick="closeModal()">Cerrar</button>
+            </div>
+        `;
+        showModal(modalContent);
+    } else {
+        // Mostrar alerta y redireccionar
+        alert("La aplicación ha dejado de funcionar.");
+        window.location.href = "https://ilovebiodanza.top";
+    }
+}
+
+function showModal(content) {
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.innerHTML = content;
+
+    document.body.appendChild(modal);
+}
+
+function closeModal() {
+    const modal = document.querySelector('div[style*="position: fixed"]');
+    if (modal) {
+        document.body.removeChild(modal);
+    }
+}
+
+// Llamar a la función al cargar la página
+window.onload = checkAppStatus;
+
     </script>
     <style>
         .container-audio {
